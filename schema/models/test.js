@@ -3,17 +3,17 @@ import { GraphQLObjectType } from 'graphql'
 import { attributeFields } from 'graphql-sequelize';
 import { STRING } from 'sequelize'
 
-export const model = db.define('Test', {
+// By convention all Models start with upper case letters (like classes)
+export const Test = db.define('Test', {
   title: STRING
 })
 
-export const schema = new GraphQLObjectType({
+// By convention all graphql types start with lower case letters
+export const test = new GraphQLObjectType({
   name: 'Test',
   description: 'A test',
-  fields: Object.assign(attributeFields(model), {})
+  fields: Object.assign(attributeFields(Test), {})
 })
 
-export default {
-  schema,
-  model
-}
+// export Model by default
+export default Test

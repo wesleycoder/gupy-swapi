@@ -7,9 +7,10 @@
   "author": "Wésley Queiroz <wesley.coder@gmail.com> (https://github.com/wescoder)",
   "license": "MIT",
   "scripts": {
-    "dev": "pm2-dev start ecosystem.config.js",
+    "dev": "npx pm2 start ecosystem.config.js --only gupy-swapi-dev",
+    "seed": "npx babel-node db/seed.js",
     "build": "npx babel index.js",
-    "start": "pm2 start ecosystem.config.js"
+    "start": "npx pm2 start ecosystem.config.js --only gupy-swapi"
   },
   "dependencies": {
     "graphql": "^0.11.7",
@@ -19,8 +20,10 @@
     "koa": "^2.3.0",
     "koa-graphql-next": "^1.0.9",
     "sequelize": "^4.19.0",
+    "sequelize-cli": "^3.0.0",
     "sqlite3": "^3.1.13",
-    "swapi-node": "^0.4.3"
+    "swapi-node": "^0.4.3",
+    "swapi-promise": "^1.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
