@@ -6,6 +6,11 @@ module.exports = {
       node_args: [
         '--inspect'
       ],
+      watch: [
+        './schema/**/*.js',
+        './server/**/*.js',
+        './*.js'
+      ],
       env: {
         NODE_ENV: 'development',
         PORT: 3000

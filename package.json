@@ -7,9 +7,9 @@
   "author": "Wésley Queiroz <wesley.coder@gmail.com> (https://github.com/wescoder)",
   "license": "MIT",
   "scripts": {
-    "dev": "node --inspect index.js",
+    "dev": "pm2-dev start ecosystem.config.js",
     "build": "npx babel index.js",
-    "start": "node index.js"
+    "start": "pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "graphql": "^0.11.7",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-inline-import": "^2.0.6",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "npx": "^9.7.1",
