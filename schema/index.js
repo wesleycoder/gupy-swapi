@@ -1,11 +1,18 @@
+import Sequelize from 'sequelize'
+import { root } from './models'
+import connection from './connection'
 import { makeExecutableSchema } from 'graphql-tools'
+import { GraphQLSchema } from 'graphql'
 
-import resolvers from './resolvers'
-import typeDefs from './types.graphql'
+export const db = connection.sync()
+  .then(() => console.log('Init DB Success!'))
+  .catch(err => console.error('Init DB Failed!', err))
 
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers
-});
+export const schema = new GraphQLSchema({
+  query: root
+})
 
-export default schema;
+export default {
+  db,
+  schema
+}

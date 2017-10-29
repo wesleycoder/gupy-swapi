@@ -13,9 +13,13 @@
   },
   "dependencies": {
     "graphql": "^0.11.7",
+    "graphql-relay": "^0.5.3",
+    "graphql-sequelize": "^5.5.0",
     "graphql-tools": "^2.6.1",
     "koa": "^2.3.0",
     "koa-graphql-next": "^1.0.9",
+    "sequelize": "^4.19.0",
+    "sqlite3": "^3.1.13",
     "swapi-node": "^0.4.3"
   },
   "devDependencies": {
