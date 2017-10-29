@@ -1,0 +1,11 @@
+type Test {
+  title: String
+}
+
+type Query {
+  tests: [Test]
+}
+
+schema {
+  query: Query
+}

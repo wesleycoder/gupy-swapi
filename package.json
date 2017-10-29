@@ -1,0 +1,29 @@
+{
+  "name": "gupy-swapi",
+  "version": "1.0.0",
+  "description": "Node/React application showcasing SWAPI (swapi.co) data",
+  "main": "index.js",
+  "repository": "git@github.com:wescoder/gupy-swapi.git",
+  "author": "Wésley Queiroz <wesley.coder@gmail.com> (https://github.com/wescoder)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node --inspect index.js",
+    "build": "npx babel index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "graphql": "^0.11.7",
+    "graphql-tools": "^2.6.1",
+    "koa": "^2.3.0",
+    "koa-graphql-next": "^1.0.9",
+    "swapi-node": "^0.4.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-inline-import": "^2.0.6",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "npx": "^9.7.1",
+    "pm2": "^2.7.2"
+  }
+}
