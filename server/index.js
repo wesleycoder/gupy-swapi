@@ -13,7 +13,7 @@ app.use(graphqlHTTP({
 
 db.then(() =>
   app.listen(APP_PORT, () =>
-    console.log(`App running on port ${APP_PORT}`)
+    console.log(`App running on port ${APP_PORT} http://0.0.0.0:${APP_PORT}/graphql`)
   )
 )
 

@@ -20,68 +20,82 @@ const sanitize = original => {
   return obj
 }
 
+console.log('Running Seed, this may take a while...')
 connection.sync({ force: true })
   .then(async () => {
     // Get all resources
+    console.log('Getting films')
     await swapi.get(FILMS)
       .then(async res => {
         cache[FILMS] = res
-        await Film.bulkCreate(res.map(async (film) => await sanitize(film)))
+        await Film.bulkCreate(
+          await Promise.all(res.map(async (film) => await sanitize(film)))
+        )
       })
-      .catch(err => console.error(err))
 
+    console.log('Getting people')
     await swapi.get(PEOPLE)
       .then(async res => {
         cache[PEOPLE] = res
-        await Person.bulkCreate(res.map(async (person) => await sanitize(person)))
+        await Person.bulkCreate(
+          await Promise.all(res.map(async (person) => await sanitize(person)))
+        )
       })
-      .catch(err => console.error(err))
 
+    console.log('Getting planets')
     await swapi.get(PLANETS)
       .then(async res => {
         cache[PLANETS] = res
-        await Planet.bulkCreate(res.map(async (planet) => await sanitize(planet)))
+        await Planet.bulkCreate(
+          await Promise.all(res.map(async (planet) => await sanitize(planet)))
+        )
       })
-      .catch(err => console.error(err))
 
+    console.log('Getting species')
     await swapi.get(SPECIES)
       .then(async res => {
         cache[SPECIES] = res
-        await Specie.bulkCreate(res.map(async (specie) => await sanitize(specie)))
+        await Specie.bulkCreate(
+          await Promise.all(res.map(async (specie) => await sanitize(specie)))
+        )
       })
-      .catch(err => console.error(err))
 
-    // await swapi.get(STARSHIPS)
-    //   .then(async res => {
-    //     cache[STARSHIPS] = res
-    //     await Starship.bulkCreate(res.map(async (starship) => await sanitize(starship)))
-    //   })
-    //   .catch(err => console.error(err))
+    console.log('Getting starships')
+    await swapi.get(STARSHIPS)
+      .then(async res => {
+        cache[STARSHIPS] = res
+        await Starship.bulkCreate(
+          await Promise.all(res.map(async (starship) => await sanitize(starship)))
+        )
+      })
 
-    // await swapi.get(VEHICLES)
-    //   .then(async res => {
-    //     cache[VEHICLES] = res
-    //     await Vehicle.bulkCreate(res.map(async (vehicle) => await sanitize(vehicle)))
-    //   })
-    //   .catch(err => console.error(err))
+    console.log('Getting vehicles')
+    await swapi.get(VEHICLES)
+      .then(async res => {
+        cache[VEHICLES] = res
+        await Vehicle.bulkCreate(
+          await Promise.all(res.map(async (vehicle) => await sanitize(vehicle)))
+        )
+      })
   })
   .then(() => {
     // Set Planets relations
+    console.log('Making planets relations')
     cache[PLANETS]
-      .map(async (planet) => {
+      .map(async (planetData) => {
         const residents = await Person.findAll({
           where: {
-            id: planet.residents.map((url) => idFromUrl(url))
+            id: planetData.residents.map((url) => idFromUrl(url))
           }
         })
         const films = await Film.findAll({
           where: {
-            id: planet.films.map((url) => idFromUrl(url))
+            id: planetData.films.map((url) => idFromUrl(url))
           }
         })
         await Planet.find({
           where: {
-            id: idFromUrl(planet.url)
+            id: idFromUrl(planetData.url)
           }
         })
           .then(async (planet) => {
@@ -90,44 +104,47 @@ connection.sync({ force: true })
           })
       })
     // Set Films Relations
+    console.log('Making films relations')
     cache[FILMS]
-      .map(async (film) => {
+      .map(async (filmData) => {
         const characters = await Person.findAll({
           where: {
-            id: film.characters.map((url) => idFromUrl(url))
+            id: filmData.characters.map((url) => idFromUrl(url))
           }
         })
         await Film.find({
           where: {
-            id: idFromUrl(film.url)
+            id: idFromUrl(filmData.url)
           }
         })
           .then(async (film) => {
             await film.setCharacters(characters)
           })
       })
+    // Set Species Relations
+    console.log('Making species relations')
     cache[SPECIES]
-      .map(async (specie) => {
+      .map(async (specieData) => {
         const homeworld = await Planet.find({
           where: {
-            id: idFromUrl(specie.homeworld)
+            id: idFromUrl(specieData.homeworld)
           }
         })
-        const people = await Person.findAll({
+        const specie = await Specie.find({
           where: {
-            [Op.in]: specie.people.map((url) => idFromUrl(url))
+            id: idFromUrl(specieData.url)
           }
         })
-        console.log('========================')
-        console.log('people:', people)
-        console.log('========================')
-
-        await Specie.find({
+        await specie.setHomeworld(homeworld)
+        await Person.update({
+          SpecieId: specie.id
+        }, {
           where: {
-            id: idFromUrl(specie.url)
+            id: {
+              [Op.in]: specieData.people.map((url) => idFromUrl(url))
+            }
           }
         })
-          .then(async (specie) => await specie.setHomeworld(homeworld))
       })
   })
   .catch(err => console.error('DB connection Failed!', err))

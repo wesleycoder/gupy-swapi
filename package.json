@@ -7,10 +7,12 @@
   "author": "Wésley Queiroz <wesley.coder@gmail.com> (https://github.com/wescoder)",
   "license": "MIT",
   "scripts": {
-    "dev": "npx pm2 start ecosystem.config.js --only gupy-swapi-dev",
     "seed": "npx babel-node db/seed.js",
-    "build": "npx babel index.js",
-    "start": "npx pm2 start ecosystem.config.js --only gupy-swapi"
+    "gupy-swapi": "npx pm2 start ecosystem.config.js --only gupy-swapi",
+    "gupy-swapi-dev": "npx pm2 start ecosystem.config.js --only gupy-swapi-dev",
+    "open-api": "npx opn 'http://0.0.0.0:3000/graphql'",
+    "dev": "run-s seed gupy-swapi-dev",
+    "start": "run-s seed gupy-swapi open-api"
   },
   "dependencies": {
     "graphql": "^0.11.7",
@@ -31,7 +33,9 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
+    "npm-run-all": "^4.1.1",
     "npx": "^9.7.1",
+    "opn-cli": "^3.1.0",
     "pm2": "^2.7.2"
   }
 }

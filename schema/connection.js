@@ -6,7 +6,8 @@ const env = process.env.NODE_ENV || 'development'
 const db = new Sequelize('gupy-swapi', null, null, {
   dialect: 'sqlite',
   storage: resolve(__dirname, `../db/gupy-swapi-${env.toLowerCase()}.db`),
-  operatorsAliases: false
+  operatorsAliases: false,
+  logging: false
 })
 
 export default db
