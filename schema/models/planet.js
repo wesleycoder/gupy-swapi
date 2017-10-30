@@ -2,8 +2,6 @@ import db from '../connection'
 import { GraphQLObjectType } from 'graphql'
 import { attributeFields } from 'graphql-sequelize';
 import { STRING, DOUBLE, FLOAT, INTEGER } from 'sequelize'
-import Film from './film'
-import Person from './person'
 
 // By convention all Models start with upper case letters (like classes)
 export const Planet = db.define('Planet', {
@@ -20,9 +18,6 @@ export const Planet = db.define('Planet', {
   terrain: STRING,
   url: STRING
 })
-
-Planet.belongsToMany(Film, { through: 'FilmPlanet' })
-Planet.hasMany(Person, { as: 'residents' })
 
 // By convention all graphql types start with lower case letters
 export const planet = new GraphQLObjectType({

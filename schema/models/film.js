@@ -2,11 +2,6 @@ import db from '../connection'
 import { GraphQLObjectType } from 'graphql'
 import { attributeFields } from 'graphql-sequelize';
 import { STRING, DATE, INTEGER } from 'sequelize'
-// import Person from './person'
-// import Planet from './planet'
-// import Starship from './starship'
-// import Vehicle from './vehicle'
-// import Specie from './specie'
 
 // By convention all Models start with upper case letters (like classes)
 export const Film = db.define('Film', {
@@ -23,10 +18,6 @@ export const Film = db.define('Film', {
 	// species: ARRAY(STRING),
 	url: STRING
 })
-
-// Film.hasMany(Person, { as: 'characters' })
-// Film.hasMany(Planet, { as: 'planets' })
-// Film.hasMany(Specie, { as: 'species' })
 
 // By convention all graphql types start with lower case letters
 export const film = new GraphQLObjectType({
