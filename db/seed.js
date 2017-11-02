@@ -1,7 +1,7 @@
 import swapi, { FILMS, PEOPLE, PLANETS, SPECIES, STARSHIPS, VEHICLES } from 'swapi-promise'
 import connection from '../schema/connection'
 import { Op } from 'sequelize'
-import { Cache, Film, Person, Planet, Specie, Starship, Vehicle } from '../schema/models'
+import { Film, Person, Planet, Specie, Starship, Vehicle } from '../schema/models'
 
 const cache = {}
 const idFromUrl = (url) => url.replace(/https\:\/\/swapi\.co\/api\/(.*)\/(.*)\//, '$2')

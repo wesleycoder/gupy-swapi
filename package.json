@@ -12,7 +12,9 @@
     "gupy-swapi-dev": "npx pm2 start ecosystem.config.js --only gupy-swapi-dev",
     "open-api": "npx opn 'http://0.0.0.0:3000/graphql'",
     "dev": "run-s seed gupy-swapi-dev",
-    "start": "run-s seed gupy-swapi open-api"
+    "start": "run-s seed gupy-swapi open-api",
+    "front": "npx pm2 start ecosystem.config.js --only swapi-front",
+    "postinstall": "npx nisd front"
   },
   "dependencies": {
     "graphql": "^0.11.7",
@@ -28,6 +30,7 @@
     "swapi-promise": "^1.0.2"
   },
   "devDependencies": {
+    "nisd": "^0.0.4",
     "npm-run-all": "^4.1.1",
     "npx": "^9.7.1",
     "opn-cli": "^3.1.0",

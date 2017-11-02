@@ -13,6 +13,15 @@ module.exports = {
       }
     },
     {
+      name: 'swapi-front',
+      script: 'front/scripts/start.js',
+      cwd: 'front',
+      env: {
+        HTTPS: true,
+        REACT_APP_DEV_SW: true
+      }
+    },
+    {
       name: 'gupy-swapi-dev',
       script: './index.js',
       node_args: [
