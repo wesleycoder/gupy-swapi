@@ -1,6 +1,7 @@
 import Koa from 'koa'
 import graphqlHTTP from 'koa-graphql-next'
-import { db, schema } from '../schema'
+import { schema } from '../schema'
+import db from '../schema/db'
 
 const APP_PORT = process.env.PORT || 3000
 
@@ -11,10 +12,12 @@ app.use(graphqlHTTP({
   graphiql: true
 }))
 
-db.then(() =>
-  app.listen(APP_PORT, () =>
-    console.log(`App running on port ${APP_PORT} http://0.0.0.0:${APP_PORT}/graphql`)
+db.sync()
+  .then(() =>
+    app.listen(APP_PORT, () =>
+      console.log(`App running on port ${APP_PORT} http://0.0.0.0:${APP_PORT}/graphql`)
+    )
   )
-)
+  .catch(err => console.error('DB connection Failed!', err))
 
 export default app

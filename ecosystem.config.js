@@ -18,6 +18,7 @@ module.exports = {
       cwd: 'front',
       env: {
         HTTPS: true,
+        PORT: 3002,
         REACT_APP_DEV_SW: true
       }
     },

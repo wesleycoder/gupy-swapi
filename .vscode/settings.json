@@ -1,13 +1,14 @@
 {
   "files.exclude": {
+    "**/.DS_Store": true,
     "**/.git": true,
-    "**/.svn": true,
     "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true
+    "**/.svn": true,
+    "**/CVS": true
   },
   "search.exclude": {
+    "**/bower_components": true,
     "**/node_modules": true,
-    "**/bower_components": true
+    "**/.reify-cache": true
   }
 }

@@ -1,4 +1,4 @@
-import db from '../connection'
+import db from '../db'
 import { STRING, DOUBLE, FLOAT, INTEGER } from 'sequelize'
 
 // By convention all Models start with upper case letters (like classes)
