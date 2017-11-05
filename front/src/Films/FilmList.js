@@ -1,8 +1,8 @@
 import { h } from 'preact'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchFilms } from './actions'
 import LoadingList from '../List/List'
-import FilmDetails from './FilmDetails'
 
 export const FilmList = ({ loaded, films, loadFilms }) => (
   <LoadingList
@@ -10,8 +10,12 @@ export const FilmList = ({ loaded, films, loadFilms }) => (
     name='Films'
     items={Object.values(films)}
     loadItems={loadFilms}
-    callback={(film) => (
-      <FilmDetails {...film} />
+    callback={({ id, title }) => (
+      <div>
+        <Link to={`/films/${id}`}>
+          {title}
+        </Link>
+      </div>
     )}
   />
 )

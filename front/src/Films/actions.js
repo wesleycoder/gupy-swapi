@@ -4,7 +4,6 @@ export const REQUEST_FILMS = 'REQUEST_FILMS'
 export const RECEIVE_FILMS = 'RECEIVE_FILMS'
 export const REQUEST_DETAILS = 'REQUEST_DETAILS'
 export const RECEIVE_DETAILS = 'RECEIVE_DETAILS'
-export const TOGGLE_DETAILS = 'TOGGLE_DETAILS'
 export const TOGGLE_OPENING_CRAWL = 'TOGGLE_OPENING_CRAWL'
 export const TOGGLE_CHARACTERS = 'TOGGLE_CHARACTERS'
 
@@ -38,7 +37,6 @@ const query = `
       director
       producer
       release_date
-      url
       characters (order: "name") {
         id
         name
@@ -46,11 +44,6 @@ const query = `
     }
   }
 `
-
-export const toggleDetails = (filmId) => ({
-  type: TOGGLE_DETAILS,
-  filmId
-})
 
 export const toggleOpeningCrawl = (filmId) => ({
   type: TOGGLE_OPENING_CRAWL,
@@ -107,6 +100,5 @@ export default {
   REQUEST_FILMS,
   RECEIVE_FILMS,
   REQUEST_DETAILS,
-  RECEIVE_DETAILS,
-  TOGGLE_DETAILS
+  RECEIVE_DETAILS
 }
