@@ -1,5 +1,5 @@
 import { GraphQLObjectType, GraphQLList } from 'graphql'
-import { attributeFields, defaultListArgs, resolver } from 'graphql-sequelize';
+import { attributeFields, defaultListArgs, resolver } from 'graphql-sequelize'
 
 export const models = []
 export const schemas = []
