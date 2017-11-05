@@ -1,33 +1,35 @@
-import { h } from 'preact';
-import { Link } from 'react-router-dom'
+import { h } from 'preact'
+import { NavLink } from 'react-router-dom'
 import style from './Navbar.css'
 
-const Navbar = () =>(
+const links = {
+  '/': 'Home',
+  '/films': 'Films',
+  '/planets': 'Planets',
+  '/characters': 'Characters',
+  '/species': 'Species',
+  '/starships': 'Starships',
+  '/vehicles': 'Vehicles'
+}
+
+const Navbar = () => (
   <div className={style.Navbar}>
     <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/films">Films</Link>
-      </li>
-      <li>
-        <Link to="/planets">Planets</Link>
-      </li>
-      <li>
-        <Link to="/characters">Characters</Link>
-      </li>
-      <li>
-        <Link to="/species">Species</Link>
-      </li>
-      <li>
-        <Link to="/starships">Starships</Link>
-      </li>
-      <li>
-        <Link to="/Vehicles">Vehicles</Link>
-      </li>
+      {Object.entries(links)
+        .map(([link, text]) => (
+          <li>
+            <NavLink
+              to={link}
+              className={style.Link}
+              exact activeClassName={style.ActiveLink}
+            >
+              {text}
+            </NavLink>
+          </li>
+        )
+      )}
     </ul>
   </div>
 )
 
-export default Navbar;
+export default Navbar

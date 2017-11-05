@@ -1,11 +1,36 @@
-import { h } from 'preact';
+import { h } from 'preact'
+import { connect } from 'react-redux'
+import { fetchFilms } from './actions'
 
-const Navbar = ({ loaded }) => (
-  ! loaded
-  ? <div>Loading films ...</div>
-  : <div className="Navbar">
-    <h2>Films</h2>
-  </div>
-)
+export const Films = ({ loaded, films, loadFilms }) => {
+  if (!loaded) {
+    loadFilms()
+    return (
+      <div>Loading films ...</div>
+    )
+  }
+  return (
+    <div>
+      <h2>Films</h2>
+      {films.map((film) =>
+        <div><strong>{film.title}</strong></div>
+      )}
+    </div>
+  )
+}
 
-export default Navbar;
+const mapDispatchToProps = (dispatch) => ({
+  loadFilms: () => dispatch(fetchFilms())
+})
+
+const mapStateToProps = ({
+  FilmsReducer: {
+    loaded,
+    films
+  }
+}) => ({
+  loaded,
+  films
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Films)

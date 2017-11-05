@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h } from 'preact'
 
 const Navbar = () =>(
   <div>
@@ -6,4 +6,4 @@ const Navbar = () =>(
   </div>
 )
 
-export default Navbar;
+export default Navbar

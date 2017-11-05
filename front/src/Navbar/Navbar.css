@@ -12,3 +12,12 @@
   flex: 0 1 auto; /* Default */
   list-style-type: none;
 }
+
+.Link {
+  text-decoration: none;
+  color: black;
+}
+
+.ActiveLink {
+  color: slateblue;
+}

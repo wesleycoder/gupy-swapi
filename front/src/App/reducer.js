@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import FilmsReducer from '../Films/reducer'
 
 const defaultState = {}
 
@@ -7,7 +8,8 @@ export const defaultReducer = (state = defaultState, action) => {
 }
 
 const AppReducer = combineReducers({
-  defaultReducer
+  defaultReducer,
+  FilmsReducer
 })
 
 export default AppReducer
