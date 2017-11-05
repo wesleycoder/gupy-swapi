@@ -1,0 +1,14 @@
+.Navbar ul {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+.Navbar ul > li {
+  display: block;
+  flex: 0 1 auto; /* Default */
+  list-style-type: none;
+}
