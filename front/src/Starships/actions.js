@@ -7,14 +7,21 @@ const startRequest = () => ({
   type: REQUEST_STARSHIPS
 })
 
+const query = `
+  query starships {
+    starships (order: "name") {
+      name
+    }
+  }
+`
+
 export const fetchStarships = () =>
   (dispatch) => {
     dispatch(startRequest())
-    return api(`{
-      starships (order: "name") {
-        name
-      }
-    }`)
+    return api({
+      query,
+      operationName: 'starships'
+    })
     .then(json => json.data)
     .then(
       data => dispatch(receiveStarships(data.starships)),

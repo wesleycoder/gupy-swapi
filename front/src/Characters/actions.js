@@ -7,17 +7,24 @@ const startRequest = () => ({
   type: REQUEST_CHARACTERS
 })
 
+const query = `
+  query characters {
+    characters: people (order: "name") {
+      name
+    }
+  }
+`
+
 export const fetchCharacters = () =>
   (dispatch) => {
     dispatch(startRequest())
-    return api(`{
-      people (order: "name") {
-        name
-      }
-    }`)
+    return api({
+      query,
+      operationName: 'characters'
+    })
       .then(json => json.data)
       .then(
-        data => dispatch(receiveCharacters(data.people)),
+        data => dispatch(receiveCharacters(data.characters)),
         err => console.log('err:', err)
       )
   }

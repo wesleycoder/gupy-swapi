@@ -1,11 +1,11 @@
-function graphqlFetch (query, vars = {}, opName = "", userOpts = {}) {
+function graphqlFetch ({ query, vars = {}, operationName = "" }, userOpts = {}) {
   const body = {
     query: query,
     variables: vars
   }
 
-  if (opName) {
-    body.operationName = opName
+  if (operationName) {
+    body.operationName = operationName
   }
 
   // default opts

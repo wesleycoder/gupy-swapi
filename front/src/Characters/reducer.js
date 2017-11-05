@@ -8,20 +8,23 @@ const defaultState = {
 export const Characters =
   (state = defaultState, action) => {
     switch (action.type) {
-      case REQUEST_CHARACTERS:
+      case REQUEST_CHARACTERS: {
         return Object.assign({
           loaded: false
         }, state)
+      }
 
-      case RECEIVE_CHARACTERS:
+      case RECEIVE_CHARACTERS: {
         const { characters } = action
         return Object.assign({}, state, {
           loaded: true,
           characters
         })
+      }
 
-      default:
+      default: {
         return state
+      }
     }
   }
 

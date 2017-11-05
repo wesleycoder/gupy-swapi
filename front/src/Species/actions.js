@@ -7,14 +7,21 @@ const startRequest = () => ({
   type: REQUEST_SPECIES
 })
 
+const query = `
+  query species {
+    species (order: "name") {
+      name
+    }
+  }
+`
+
 export const fetchSpecies = () =>
   (dispatch) => {
     dispatch(startRequest())
-    return api(`{
-      species (order: "name") {
-        name
-      }
-    }`)
+    return api({
+      query,
+      operationName: 'species'
+    })
     .then(json => json.data)
     .then(
       data => dispatch(receiveSpecies(data.species)),

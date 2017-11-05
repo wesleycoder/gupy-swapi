@@ -2,15 +2,16 @@ import { h } from 'preact'
 import { connect } from 'react-redux'
 import { fetchFilms } from './actions'
 import LoadingList from '../List/List'
+import FilmDetails from './FilmDetails'
 
 export const FilmList = ({ loaded, films, loadFilms }) => (
   <LoadingList
     loaded={loaded}
     name='Films'
-    items={films}
+    items={Object.values(films)}
     loadItems={loadFilms}
     callback={(film) => (
-      <div><strong>{film.title}</strong></div>
+      <FilmDetails {...film} />
     )}
   />
 )

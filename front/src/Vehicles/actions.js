@@ -7,14 +7,21 @@ const startRequest = () => ({
   type: REQUEST_VEHICLES
 })
 
+const query = `
+  query vehicles {
+    vehicles (order: "name") {
+      name
+    }
+  }
+`
+
 export const fetchVehicles = () =>
   (dispatch) => {
     dispatch(startRequest())
-    return api(`{
-      vehicles (order: "name") {
-        name
-      }
-    }`)
+    return api({
+      query,
+      operationName: 'vehicles'
+    })
     .then(json => json.data)
     .then(
       data => dispatch(receiveVehicles(data.vehicles)),

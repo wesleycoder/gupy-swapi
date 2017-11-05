@@ -7,14 +7,21 @@ const startRequest = () => ({
   type: REQUEST_PLANETS
 })
 
+const query = `
+  query planets {
+    planets (order: "name") {
+      name
+    }
+  }
+`
+
 export const fetchPlanets = () =>
   (dispatch) => {
     dispatch(startRequest())
-    return api(`{
-      planets (order: "name") {
-        name
-      }
-    }`)
+    return api({
+      query,
+      operationName: 'planets'
+    })
     .then(json => json.data)
     .then(
       data => dispatch(receivePlanets(data.planets)),

@@ -8,20 +8,23 @@ const defaultState = {
 export const Planets =
   (state = defaultState, action) => {
     switch (action.type) {
-      case REQUEST_PLANETS:
+      case REQUEST_PLANETS: {
         return Object.assign({
           loaded: false
         }, state)
+      }
 
-      case RECEIVE_PLANETS:
+      case RECEIVE_PLANETS: {
         const { planets } = action
         return Object.assign({}, state, {
           loaded: true,
           planets
         })
+      }
 
-      default:
+      default: {
         return state
+      }
     }
   }
 

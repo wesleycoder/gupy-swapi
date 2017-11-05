@@ -8,20 +8,23 @@ const defaultState = {
 export const Vehicles =
   (state = defaultState, action) => {
     switch (action.type) {
-      case REQUEST_VEHICLES:
+      case REQUEST_VEHICLES: {
         return Object.assign({
           loaded: false
         }, state)
+      }
 
-      case RECEIVE_VEHICLES:
+      case RECEIVE_VEHICLES: {
         const { vehicles } = action
         return Object.assign({}, state, {
           loaded: true,
           vehicles
         })
+      }
 
-      default:
+      default: {
         return state
+      }
     }
   }
 

@@ -1,0 +1,49 @@
+.Details {
+  display: none;
+  padding-left: 20px
+}
+
+.ShowDetails {
+  display: block;
+}
+
+.ToggleOpeningCrawl,
+.ToggleCharacters,
+.Title {
+  cursor: pointer;
+  display: block;
+}
+
+.ToggleOpeningCrawl:hover,
+.ToggleCharacters:hover,
+.Title:hover {
+  background-color: #eee;
+}
+
+.Title small {
+  color: #666;
+  font-size: 10px;
+}
+
+.OpeningCrawl {
+  display: none;
+  padding-left: 20px;
+}
+
+.Details small {
+  color: #666;
+  font-size: 10px;
+}
+
+.OpeningCrawlVisible {
+  display: block;
+}
+
+.Characters {
+  display: none;
+  padding-left: 20px;
+}
+
+.CharactersVisible {
+  display: block;
+}
