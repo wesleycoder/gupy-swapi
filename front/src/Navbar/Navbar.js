@@ -4,9 +4,9 @@ import style from './Navbar.css'
 
 const links = {
   '/': 'Home',
+  '/characters': 'Characters',
   '/films': 'Films',
   '/planets': 'Planets',
-  '/characters': 'Characters',
   '/species': 'Species',
   '/starships': 'Starships',
   '/vehicles': 'Vehicles'

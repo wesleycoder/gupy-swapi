@@ -10,17 +10,16 @@ const startRequest = () => ({
 export const fetchFilms = () =>
   (dispatch) => {
     dispatch(startRequest())
-    return api(`
-      {
-        films (order: "episode_id") {
-          title
-        }
+    return api(`{
+      films (order: "episode_id") {
+        title
       }
-    `)
-      .then(
-        json => dispatch(receiveFilms(json.data.films)),
-        err => console.log('err:', err)
-      )
+    }`)
+    .then(json => json.data)
+    .then(
+      data => dispatch(receiveFilms(data.films)),
+      err => console.log('err:', err)
+    )
   }
 
 export const receiveFilms = (films) => ({

@@ -1,23 +1,23 @@
-import { REQUEST_FILMS, RECEIVE_FILMS } from './actions'
+import { REQUEST_SPECIES, RECEIVE_SPECIES } from './actions'
 
 const defaultState = {
   loaded: false,
-  films: []
+  species: []
 }
 
-export const Films =
+export const Species =
   (state = defaultState, action) => {
     switch (action.type) {
-      case REQUEST_FILMS:
+      case REQUEST_SPECIES:
         return Object.assign({
           loaded: false
         }, state)
 
-      case RECEIVE_FILMS:
-        const { films } = action
+      case RECEIVE_SPECIES:
+        const { species } = action
         return Object.assign({}, state, {
           loaded: true,
-          films
+          species
         })
 
       default:
@@ -25,4 +25,4 @@ export const Films =
     }
   }
 
-export default Films
+export default Species
