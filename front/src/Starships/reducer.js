@@ -1,10 +1,19 @@
 import clone from 'lodash.clone'
-import { REQUEST_STARSHIPS, RECEIVE_STARSHIPS } from './actions'
+import {
+  REQUEST_STARSHIPS,
+  RECEIVE_STARSHIPS,
+  REQUEST_DETAILS,
+  RECEIVE_DETAILS
+} from './actions'
 
 const defaultState = {
   loaded: false,
-  starships: []
   loading: false,
+  starship: {
+    loaded: false,
+    loading: false
+  },
+  starships: {}
 }
 
 export const Starships =
@@ -24,6 +33,32 @@ export const Starships =
           loaded: true,
           loading: false,
           starships: action.starships
+            .reduce((starships, starship) => ({
+              ...starships,
+              [starship.id]: starship
+            }), {})
+        }
+      }
+
+      case REQUEST_DETAILS: {
+        return {
+          ...clone(state),
+          starship: {
+            id: action.starshipId,
+            loaded: false,
+            loading: true
+          }
+        }
+      }
+
+      case RECEIVE_DETAILS: {
+        return {
+          ...clone(state),
+          starship: {
+            ...action.starship,
+            loaded: true,
+            loading: false
+          }
         }
       }
 

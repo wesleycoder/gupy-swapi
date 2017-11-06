@@ -7,7 +7,7 @@ export const Starship = db.define('Starship', {
 	model: STRING,
 	manufacturer: STRING,
 	cost_in_credits: INTEGER,
-	length: INTEGER,
+	length: FLOAT(10, 2),
 	max_atmosphering_speed: STRING,
 	crew: INTEGER,
 	passengers: INTEGER,
