@@ -84,5 +84,7 @@ export const fetchDetails = (characterId) =>
 
 export default {
   REQUEST_CHARACTERS,
-  RECEIVE_CHARACTERS
+  RECEIVE_CHARACTERS,
+  REQUEST_DETAILS,
+  RECEIVE_DETAILS
 }

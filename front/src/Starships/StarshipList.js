@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { connect } from 'react-redux'
 import { fetchStarships } from './actions'
-import LoadingList from '../List/List'
+import LoadingList from '../List/LoadingList'
 
 export const StarshipList = ({ loaded, starships, loadStarships }) => (
   <LoadingList

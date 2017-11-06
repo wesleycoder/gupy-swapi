@@ -2,21 +2,15 @@ import { h } from 'preact'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchFilms } from './actions'
-import LoadingList from '../List/List'
+import LoadingList from '../List/LoadingList'
 
 export const FilmList = ({ loaded, loading, films, loadFilms }) => (
   <LoadingList
     loaded={loaded}
     loading={loading}
     name='Films'
-    items={
-      [...Object.values(films)]
-        .sort((a, b) => {
-            if (a.episode_id < b.episode_id) { return -1 }
-            if (a.episode_id > b.episode_id) { return 1 }
-            return 0
-          })
-    }
+    items={Object.values(films)}
+    sortBy='episode_id'
     loadItems={loadFilms}
     callback={({ id, title, episode_id, release_date }) => (
       <div>

@@ -1,9 +1,15 @@
 import clone from 'lodash.clone'
-import { REQUEST_PLANETS, RECEIVE_PLANETS } from './actions'
+import {
+  REQUEST_PLANETS,
+  RECEIVE_PLANETS,
+  REQUEST_DETAILS,
+  RECEIVE_DETAILS
+} from './actions'
 
 const defaultState = {
   loaded: false,
-  planets: []
+  planet: {},
+  planets: {}
 }
 
 export const Planets =
@@ -17,10 +23,37 @@ export const Planets =
       }
 
       case RECEIVE_PLANETS: {
+        // console.log(action.planets)
         return {
           ...clone(state),
           loaded: true,
           planets: action.planets
+            .reduce((planets, planet) => ({
+              ...planets,
+              [planet.id]: planet
+            }), {})
+        }
+      }
+
+      case REQUEST_DETAILS: {
+        return {
+          ...clone(state),
+          planet: {
+            id: action.planetId,
+            loaded: false,
+            loading: true
+          }
+        }
+      }
+
+      case RECEIVE_DETAILS: {
+        return {
+          ...clone(state),
+          planet: {
+            ...action.planet,
+            loaded: true,
+            loading: false
+          }
         }
       }
 

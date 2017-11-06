@@ -9,7 +9,7 @@ export const FilmDetails = ({
   id, title, episode_id, opening_crawl, director,
   producer, release_date, characters,
   loaded, loading, showOpeningCrawl, showCharacters,
-  match: { params: { id: filmId } },
+  match: { params: { filmId } },
   toggleOpeningCrawl, toggleCharacters, loadDetails
 }) => {
   if ((Number.parseInt(id, 10) !== Number.parseInt(filmId, 10) && !loading) || (!loaded && !loading)) {

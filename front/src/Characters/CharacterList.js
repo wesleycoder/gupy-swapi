@@ -2,21 +2,15 @@ import { h } from 'preact'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchCharacters } from './actions'
-import LoadingList from '../List/List'
+import LoadingList from '../List/LoadingList'
 
 export const CharacterList = ({ loaded, loading, characters, loadCharacters }) => (
   <LoadingList
     loaded={loaded}
     loading={loading}
     name='Characters'
-    items={
-      [...Object.values(characters)]
-        .sort((a, b) => {
-          if (a.name < b.name) { return -1 }
-          if (a.name > b.name) { return 1 }
-          return 0
-        })
-      }
+    items={Object.values(characters)}
+    sortBy='name'
     loadItems={loadCharacters}
     callback={({ id, name }) => (
       <div>

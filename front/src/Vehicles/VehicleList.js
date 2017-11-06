@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { connect } from 'react-redux'
 import { fetchVehicles } from './actions'
-import LoadingList from '../List/List'
+import LoadingList from '../List/LoadingList'
 
 export const VehicleList = ({ loaded, vehicles, loadVehicles }) => (
   <LoadingList

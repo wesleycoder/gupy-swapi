@@ -7,7 +7,7 @@ export const CharacterDetails = ({
   id, name, height, mass, hair_color, skin_color,
   eye_color, birth_year, gender, HomeworldId, SpecieId,
   loaded, loading,
-  match: { params: { id: characterId } },
+  match: { params: { characterId } },
   loadDetails
 }) => {
   if ((Number.parseInt(id, 10) !== Number.parseInt(characterId, 10) && !loading) || (!loaded && !loading)) {
@@ -52,7 +52,6 @@ export const CharacterDetails = ({
 const mapDispatchToProps = (dispatch) => ({
   loadDetails: (characterId) => dispatch(fetchDetails(characterId))
 })
-
 
 const mapStateToProps = ({
   Characters: {

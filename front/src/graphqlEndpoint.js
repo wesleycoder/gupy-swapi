@@ -1,4 +1,4 @@
-function graphqlFetch ({ query, vars = {}, operationName = "" }, userOpts = {}) {
+function graphqlFetch ({ query, vars = {}, operationName = '' }, userOpts = {}) {
   const body = {
     query: query,
     variables: vars

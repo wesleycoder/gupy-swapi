@@ -21,19 +21,19 @@ const App = () => (
     <div className={styles.App}>
       <Navbar />
       <hr/>
-      <Route exact path="/" component={Guide} />
-      <Route exact path="/characters" component={CharacterList} />
-      <Route exact path="/characters/:id" component={CharacterDetails} />
-      <Route exact path="/films" component={FilmList} />
-      <Route exact path="/films/:id" component={FilmDetails} />
-      <Route exact path="/planets" component={PlanetList} />
-      <Route exact path="/planets/:id" component={PlanetDetails} />
-      <Route exact path="/species" component={SpecieList} />
-      <Route exact path="/species/:id" component={SpecieDetails} />
-      <Route exact path="/starships" component={StarshipList} />
-      <Route exact path="/starships/:id" component={StarshipDetails} />
-      <Route exact path="/vehicles" component={VehicleList} />
-      <Route exact path="/vehicles/:id" component={VehicleDetails} />
+      <Route exact path='/' component={Guide} />
+      <Route exact path='/characters' component={CharacterList} />
+      <Route exact path='/characters/:characterId' component={CharacterDetails} />
+      <Route exact path='/films' component={FilmList} />
+      <Route exact path='/films/:filmId' component={FilmDetails} />
+      <Route exact path='/planets' component={PlanetList} />
+      <Route exact path='/planets/:planetId' component={PlanetDetails} />
+      <Route exact path='/species' component={SpecieList} />
+      <Route exact path='/species/:specieId' component={SpecieDetails} />
+      <Route exact path='/starships' component={StarshipList} />
+      <Route exact path='/starships/:starshipId' component={StarshipDetails} />
+      <Route exact path='/vehicles' component={VehicleList} />
+      <Route exact path='/vehicles/:vehicleId' component={VehicleDetails} />
     </div>
   </Router>
 )
