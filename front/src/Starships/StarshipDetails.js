@@ -1,6 +1,5 @@
 import { h } from 'preact'
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
 import { fetchDetails } from './actions'
 
 export const StarshipDetails = ({

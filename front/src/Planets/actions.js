@@ -15,7 +15,7 @@ const query = `
   }
   query planetDetails ($planetId: Int) {
     planet: planets (
-     where: { id: $planetId }
+      where: { id: $planetId }
     ) {
       id
       name
@@ -59,7 +59,7 @@ export const fetchPlanets = () =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receivePlanets(data.planets)),
+      data => data && dispatch(receivePlanets(data.planets)),
       err => console.log('err:', err)
     )
   }
@@ -76,7 +76,7 @@ export const fetchDetails = (planetId) =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveDetails(data.planet[0])),
+      data => data && data.planet[0] && dispatch(receiveDetails(data.planet[0])),
       err => console.log('err:', err)
     )
   }

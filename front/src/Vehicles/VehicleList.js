@@ -1,16 +1,23 @@
 import { h } from 'preact'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchVehicles } from './actions'
 import LoadingList from '../List/LoadingList'
 
-export const VehicleList = ({ loaded, vehicles, loadVehicles }) => (
+export const VehicleList = ({ loaded, loading, vehicles, loadVehicles }) => (
   <LoadingList
     loaded={loaded}
+    loading={loading}
     name='Vehicles'
-    items={vehicles}
+    items={Object.values(vehicles)}
+    sortBy='name'
     loadItems={loadVehicles}
-    callback={(vehicle) => (
-      <div><strong>{vehicle.name}</strong></div>
+    callback={({ id, name }) => (
+      <div>
+        <Link to={`/vehicles/${id}`}>
+          {name}
+        </Link>
+      </div>
     )}
   />
 )

@@ -15,7 +15,7 @@ const query = `
   }
   query specieDetails ($specieId: Int) {
     specie: species (
-     where: { id: $specieId }
+      where: { id: $specieId }
     ) {
       id
       name
@@ -60,7 +60,7 @@ export const fetchSpecies = () =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveSpecies(data.species)),
+      data => data && dispatch(receiveSpecies(data.species)),
       err => console.log('err:', err)
     )
   }
@@ -77,7 +77,7 @@ export const fetchDetails = (specieId) =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveDetails(data.specie[0])),
+      data => data && data.specie[0] && dispatch(receiveDetails(data.specie[0])),
       err => console.log('err:', err)
     )
   }

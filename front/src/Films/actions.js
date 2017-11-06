@@ -74,7 +74,7 @@ export const fetchFilms = () =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveFilms(data.films)),
+      data => data && dispatch(receiveFilms(data.films)),
       err => console.log('err:', err)
     )
   }
@@ -91,7 +91,7 @@ export const fetchDetails = (filmId) =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveDetails(data.film[0])),
+      data => data && data.film[0] && dispatch(receiveDetails(data.film[0])),
       err => console.log('err:', err)
     )
   }

@@ -15,7 +15,7 @@ const query = `
   }
   query characterDetails ($characterId: Int) {
     character: people (
-     where: { id: $characterId }
+      where: { id: $characterId }
     ) {
       id
       name
@@ -60,7 +60,7 @@ export const fetchCharacters = () =>
     })
       .then(json => json.data)
       .then(
-        data => dispatch(receiveCharacters(data.characters)),
+        data => data && dispatch(receiveCharacters(data.characters)),
         err => console.log('err:', err)
       )
   }
@@ -77,7 +77,7 @@ export const fetchDetails = (characterId) =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveDetails(data.character[0])),
+      data => data && data.character[0] && dispatch(receiveDetails(data.character[0])),
       err => console.log('err:', err)
     )
   }

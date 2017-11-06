@@ -15,7 +15,7 @@ const query = `
   }
   query starshipDetails ($starshipId: Int) {
     starship: starships (
-    where: { id: $starshipId }
+      where: { id: $starshipId }
     ) {
       id
       name
@@ -63,7 +63,7 @@ export const fetchStarships = () =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveStarships(data.starships)),
+      data => data && dispatch(receiveStarships(data.starships)),
       err => console.log('err:', err)
     )
   }
@@ -80,7 +80,7 @@ export const fetchDetails = (starshipId) =>
     })
     .then(json => json.data)
     .then(
-      data => dispatch(receiveDetails(data.starship[0])),
+      data => data && data.starship[0] && dispatch(receiveDetails(data.starship[0])),
       err => console.log('err:', err)
     )
   }

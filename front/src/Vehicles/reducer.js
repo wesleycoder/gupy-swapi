@@ -1,5 +1,10 @@
 import clone from 'lodash.clone'
-import { REQUEST_VEHICLES, RECEIVE_VEHICLES } from './actions'
+import {
+  REQUEST_VEHICLES,
+  RECEIVE_VEHICLES,
+  REQUEST_DETAILS,
+  RECEIVE_DETAILS
+} from './actions'
 
 const defaultState = {
   loaded: false,
@@ -32,6 +37,28 @@ export const Vehicles =
               ...vehicles,
               [vehicle.id]: vehicle
             }), {})
+        }
+      }
+
+      case REQUEST_DETAILS: {
+        return {
+          ...clone(state),
+          vehicle: {
+            id: action.vehicleId,
+            loaded: false,
+            loading: true
+          }
+        }
+      }
+
+      case RECEIVE_DETAILS: {
+        return {
+          ...clone(state),
+          vehicle: {
+            ...action.vehicle,
+            loaded: true,
+            loading: false
+          }
         }
       }
 
