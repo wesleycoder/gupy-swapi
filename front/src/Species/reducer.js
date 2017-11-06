@@ -1,3 +1,4 @@
+import clone from 'lodash.clone'
 import { REQUEST_SPECIES, RECEIVE_SPECIES } from './actions'
 
 const defaultState = {
@@ -9,21 +10,22 @@ export const Species =
   (state = defaultState, action) => {
     switch (action.type) {
       case REQUEST_SPECIES: {
-        return Object.assign({
+        return {
+          ...clone(state),
           loaded: false
-        }, state)
+        }
       }
 
       case RECEIVE_SPECIES: {
-        const { species } = action
-        return Object.assign({}, state, {
+        return {
+          ...clone(state),
           loaded: true,
-          species
-        })
+          species: action.species
+        }
       }
 
       default: {
-        return state
+        return clone(state)
       }
     }
   }

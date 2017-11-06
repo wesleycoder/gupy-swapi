@@ -1,3 +1,4 @@
+import clone from 'lodash.clone'
 import { REQUEST_STARSHIPS, RECEIVE_STARSHIPS } from './actions'
 
 const defaultState = {
@@ -9,21 +10,22 @@ export const Starships =
   (state = defaultState, action) => {
     switch (action.type) {
       case REQUEST_STARSHIPS: {
-        return Object.assign({
+        return {
+          ...clone(state),
           loaded: false
-        }, state)
+        }
       }
 
       case RECEIVE_STARSHIPS: {
-        const { starships } = action
-        return Object.assign({}, state, {
+        return {
+          ...clone(state),
           loaded: true,
-          starships
-        })
+          starships: action.starships
+        }
       }
 
       default: {
-        return state
+        return clone(state)
       }
     }
   }

@@ -1,7 +1,8 @@
 import api from '../graphqlEndpoint'
 
-export const REQUEST_SPECIES = 'REQUEST_SPECIES'
-export const RECEIVE_SPECIES = 'RECEIVE_SPECIES'
+const PREFIX = 'SPECIES__'
+export const REQUEST_SPECIES = `${PREFIX}REQUEST_SPECIES`
+export const RECEIVE_SPECIES = `${PREFIX}RECEIVE_SPECIES`
 
 const startRequest = () => ({
   type: REQUEST_SPECIES

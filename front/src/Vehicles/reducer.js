@@ -1,3 +1,4 @@
+import clone from 'lodash.clone'
 import { REQUEST_VEHICLES, RECEIVE_VEHICLES } from './actions'
 
 const defaultState = {
@@ -9,21 +10,22 @@ export const Vehicles =
   (state = defaultState, action) => {
     switch (action.type) {
       case REQUEST_VEHICLES: {
-        return Object.assign({
+        return {
+          ...clone(state),
           loaded: false
-        }, state)
+        }
       }
 
       case RECEIVE_VEHICLES: {
-        const { vehicles } = action
-        return Object.assign({}, state, {
+        return {
+          ...clone(state),
           loaded: true,
-          vehicles
-        })
+          vehicles: action.vehicles
+        }
       }
 
       default: {
-        return state
+        return clone(state)
       }
     }
   }

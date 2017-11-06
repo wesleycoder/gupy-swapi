@@ -1,31 +1,39 @@
 import { h } from 'preact'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchCharacters } from './actions'
 import LoadingList from '../List/List'
 
-export const CharacterList = ({ loaded, characters, loadFilms }) => (
+export const CharacterList = ({ loaded, loading, characters, loadCharacters }) => (
   <LoadingList
     loaded={loaded}
+    loading={loading}
     name='Characters'
-    items={characters}
-    loadItems={loadFilms}
-    callback={(character) => (
-      <div><strong>{character.name}</strong></div>
+    items={Object.values(characters)}
+    loadItems={loadCharacters}
+    callback={({ id, name }) => (
+      <div>
+        <Link to={`/characters/${id}`}>
+          {name}
+        </Link>
+      </div>
     )}
   />
 )
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFilms: () => dispatch(fetchCharacters())
+  loadCharacters: () => dispatch(fetchCharacters())
 })
 
 const mapStateToProps = ({
   Characters: {
     loaded,
+    loading,
     characters
   }
 }) => ({
   loaded,
+  loading,
   characters
 })
 

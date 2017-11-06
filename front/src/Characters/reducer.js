@@ -1,29 +1,63 @@
-import { REQUEST_CHARACTERS, RECEIVE_CHARACTERS } from './actions'
+import clone from 'lodash.clone'
+import {
+  REQUEST_CHARACTERS,
+  RECEIVE_CHARACTERS,
+  REQUEST_DETAILS,
+  RECEIVE_DETAILS
+} from './actions'
 
 const defaultState = {
   loaded: false,
-  characters: []
+  character: {},
+  characters: {}
 }
 
 export const Characters =
   (state = defaultState, action) => {
     switch (action.type) {
       case REQUEST_CHARACTERS: {
-        return Object.assign({
+        return {
+          ...clone(state),
           loaded: false
-        }, state)
+        }
       }
 
       case RECEIVE_CHARACTERS: {
-        const { characters } = action
-        return Object.assign({}, state, {
+        return {
+          ...clone(state),
           loaded: true,
-          characters
-        })
+          characters: action.characters
+            .reduce((characters, character) => ({
+              ...characters,
+              [character.id]: character
+            }), {})
+        }
+      }
+
+      case REQUEST_DETAILS: {
+        return {
+          ...clone(state),
+          character: {
+            id: action.characterId,
+            loaded: false,
+            loading: true
+          }
+        }
+      }
+
+      case RECEIVE_DETAILS: {
+        return {
+          ...clone(state),
+          character: {
+            ...action.character,
+            loaded: true,
+            loading: false
+          }
+        }
       }
 
       default: {
-        return state
+        return clone(state)
       }
     }
   }

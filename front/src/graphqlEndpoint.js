@@ -9,17 +9,18 @@ function graphqlFetch ({ query, vars = {}, operationName = "" }, userOpts = {}) 
   }
 
   // default opts
-  const opts = Object.assign({
+  const opts = {
     method: 'POST',
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
-  }, userOpts)
+    body: JSON.stringify(body),
+    ...userOpts
+  }
 
   return fetch('https://localhost:3001/graphql', opts)
-    .then((res) =>res.json())
+    .then((res) => res.json())
 }
 
 export const api = graphqlFetch

@@ -1,6 +1,7 @@
 import { h } from 'preact'
 import cx from 'classnames'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchDetails, toggleOpeningCrawl, toggleCharacters } from './actions'
 import styles from './Film.css'
 
@@ -11,7 +12,7 @@ export const FilmDetails = ({
   match: { params: { id: filmId } },
   toggleOpeningCrawl, toggleCharacters, loadDetails
 }) => {
-  if ((id !== Number.parseInt(filmId, 10) && !loading) || (!loaded && !loading)) {
+  if ((Number.parseInt(id, 10) !== Number.parseInt(filmId, 10) && !loading) || (!loaded && !loading)) {
     loadDetails(filmId)
   }
   return (
@@ -53,7 +54,11 @@ export const FilmDetails = ({
               }
             )}>
               {characters.map(({ id, name }) => (
-                <div>{name}</div>
+                <div>
+                  <Link to={`/characters/${id}`}>
+                    {name}
+                  </Link>
+                </div>
               ))}
             </div>
           </div>

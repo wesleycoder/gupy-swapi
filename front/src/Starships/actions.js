@@ -1,7 +1,8 @@
 import api from '../graphqlEndpoint'
 
-export const REQUEST_STARSHIPS = 'REQUEST_STARSHIPS'
-export const RECEIVE_STARSHIPS = 'RECEIVE_STARSHIPS'
+const PREFIX = 'STARSHIPS__'
+export const REQUEST_STARSHIPS = `${PREFIX}REQUEST_STARSHIPS`
+export const RECEIVE_STARSHIPS = `${PREFIX}RECEIVE_STARSHIPS`
 
 const startRequest = () => ({
   type: REQUEST_STARSHIPS

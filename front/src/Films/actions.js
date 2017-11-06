@@ -1,20 +1,12 @@
 import api from '../graphqlEndpoint'
 
-export const REQUEST_FILMS = 'REQUEST_FILMS'
-export const RECEIVE_FILMS = 'RECEIVE_FILMS'
-export const REQUEST_DETAILS = 'REQUEST_DETAILS'
-export const RECEIVE_DETAILS = 'RECEIVE_DETAILS'
-export const TOGGLE_OPENING_CRAWL = 'TOGGLE_OPENING_CRAWL'
-export const TOGGLE_CHARACTERS = 'TOGGLE_CHARACTERS'
-
-const startRequestFilms = () => ({
-  type: REQUEST_FILMS
-})
-
-const startRequestDetails = (filmId) => ({
-  type: REQUEST_DETAILS,
-  filmId
-})
+const PREFIX = 'FILMS__'
+export const REQUEST_FILMS = `${PREFIX}REQUEST_FILMS`
+export const RECEIVE_FILMS = `${PREFIX}RECEIVE_FILMS`
+export const REQUEST_DETAILS = `${PREFIX}REQUEST_DETAILS`
+export const RECEIVE_DETAILS = `${PREFIX}RECEIVE_DETAILS`
+export const TOGGLE_OPENING_CRAWL = `${PREFIX}TOGGLE_OPENING_CRAWL`
+export const TOGGLE_CHARACTERS = `${PREFIX}TOGGLE_CHARACTERS`
 
 const query = `
   query films {
@@ -27,7 +19,6 @@ const query = `
   }
   query filmDetails ($filmId: Int) {
     film: films (
-      order: "episode_id",
       where: { id: $filmId }
     ) {
       id
@@ -45,6 +36,25 @@ const query = `
   }
 `
 
+const startRequestFilms = () => ({
+  type: REQUEST_FILMS
+})
+
+export const receiveFilms = (films) => ({
+  type: RECEIVE_FILMS,
+  films
+})
+
+const startRequestDetails = (filmId) => ({
+  type: REQUEST_DETAILS,
+  filmId
+})
+
+export const receiveDetails = (film) => ({
+  type: RECEIVE_DETAILS,
+  film
+})
+
 export const toggleOpeningCrawl = (filmId) => ({
   type: TOGGLE_OPENING_CRAWL,
   filmId
@@ -53,16 +63,6 @@ export const toggleOpeningCrawl = (filmId) => ({
 export const toggleCharacters = (filmId) => ({
   type: TOGGLE_CHARACTERS,
   filmId
-})
-
-export const receiveFilms = (films) => ({
-  type: RECEIVE_FILMS,
-  films
-})
-
-export const receiveDetails = (film) => ({
-  type: RECEIVE_DETAILS,
-  film
 })
 
 export const fetchFilms = () =>

@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom'
 import { fetchFilms } from './actions'
 import LoadingList from '../List/List'
 
-export const FilmList = ({ loaded, films, loadFilms }) => (
+export const FilmList = ({ loaded, loading, films, loadFilms }) => (
   <LoadingList
     loaded={loaded}
+    loading={loading}
     name='Films'
     items={Object.values(films)}
     loadItems={loadFilms}
@@ -27,10 +28,12 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = ({
   Films: {
     loaded,
+    loading,
     films
   }
 }) => ({
   loaded,
+  loading,
   films
 })
 

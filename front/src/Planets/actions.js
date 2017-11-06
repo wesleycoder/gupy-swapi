@@ -1,7 +1,8 @@
 import api from '../graphqlEndpoint'
 
-export const REQUEST_PLANETS = 'REQUEST_PLANETS'
-export const RECEIVE_PLANETS = 'RECEIVE_PLANETS'
+const PREFIX = 'PLANETS__'
+export const REQUEST_PLANETS = `${PREFIX}REQUEST_PLANETS`
+export const RECEIVE_PLANETS = `${PREFIX}RECEIVE_PLANETS`
 
 const startRequest = () => ({
   type: REQUEST_PLANETS

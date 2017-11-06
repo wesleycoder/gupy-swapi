@@ -1,5 +1,4 @@
 import clone from 'lodash.clone'
-import merge from 'lodash.merge'
 import {
   REQUEST_FILMS,
   RECEIVE_FILMS,
@@ -11,6 +10,7 @@ import {
 
 const defaultState = {
   loaded: false,
+  loading: false,
   film: {
     loaded: false,
     loading: false
@@ -22,45 +22,67 @@ export const Films =
   (state = defaultState, action) => {
     switch (action.type) {
       case REQUEST_FILMS: {
-        return merge(clone(state), { loaded: false })
+        return {
+          ...clone(state),
+          loaded: false,
+          loading: true,
+          films: {}
+        }
       }
 
       case RECEIVE_FILMS: {
-        const films = {}
-        action.films
-        .forEach((film) => {
-          films[film.id] = film
-        })
-        return merge(clone(state), {
+        return {
+          ...clone(state),
           loaded: true,
-          films
-        })
+          loading: false,
+          films: action.films
+            .reduce((films, film) => ({
+              ...films,
+              [film.id]: film
+            }), {})
+        }
       }
 
       case REQUEST_DETAILS: {
-        const film = { id: action.filmId }
-        film.loaded = false
-        film.loading = true
-        return merge(clone(state), { film })
+        return {
+          ...clone(state),
+          film: {
+            id: action.filmId,
+            loaded: false,
+            loading: true
+          }
+        }
       }
 
       case RECEIVE_DETAILS: {
-        const film = merge(clone(state.films[action.film.id]), action.film)
-        film.loaded = true
-        film.loading = false
-        return merge(clone(state), { film })
+        return {
+          ...clone(state),
+          film: {
+            ...action.film,
+            loaded: true,
+            loading: false
+          }
+        }
       }
 
       case TOGGLE_OPENING_CRAWL: {
-        const film = clone(state.film)
-        film.showOpeningCrawl = !film.showOpeningCrawl
-        return merge(clone(state), { film })
+        return {
+          ...clone(state),
+          film: {
+            ...state.film,
+            showOpeningCrawl: !state.film.showOpeningCrawl
+          }
+        }
       }
 
       case TOGGLE_CHARACTERS: {
-        const film = clone(state.film)
-        film.showCharacters = !film.showCharacters
-        return merge(clone(state), { film })
+        return {
+          ...clone(state),
+          film: {
+            ...state.film,
+            showCharacters: !state.film.showCharacters
+          }
+        }
       }
 
       default: {

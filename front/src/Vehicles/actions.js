@@ -1,7 +1,8 @@
 import api from '../graphqlEndpoint'
 
-export const REQUEST_VEHICLES = 'REQUEST_VEHICLES'
-export const RECEIVE_VEHICLES = 'RECEIVE_VEHICLES'
+const PREFIX = 'VEHICLES__'
+export const REQUEST_VEHICLES = `${PREFIX}REQUEST_VEHICLES`
+export const RECEIVE_VEHICLES = `${PREFIX}RECEIVE_VEHICLES`
 
 const startRequest = () => ({
   type: REQUEST_VEHICLES
