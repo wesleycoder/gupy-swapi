@@ -9,7 +9,14 @@ export const CharacterList = ({ loaded, loading, characters, loadCharacters }) =
     loaded={loaded}
     loading={loading}
     name='Characters'
-    items={Object.values(characters)}
+    items={
+      [...Object.values(characters)]
+        .sort((a, b) => {
+          if (a.name < b.name) { return -1 }
+          if (a.name > b.name) { return 1 }
+          return 0
+        })
+      }
     loadItems={loadCharacters}
     callback={({ id, name }) => (
       <div>

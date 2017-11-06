@@ -29,7 +29,7 @@ export const FilmDetails = ({
           <div><strong>Episode Number:</strong> {episode_id}</div>
           <div><strong>Director:</strong> {director}</div>
           <div><strong>Producer:</strong> {producer}</div>
-          <div><strong>Release date:</strong> {new Date(release_date).toLocaleDateString()}</div>
+          <div><strong>Release date:</strong> {(new Date(release_date)).toLocaleDateString()}</div>
           <div>
             <strong
               className={styles.ToggleOpeningCrawl}

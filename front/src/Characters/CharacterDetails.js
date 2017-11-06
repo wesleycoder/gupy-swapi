@@ -31,12 +31,18 @@ export const CharacterDetails = ({
           <div><strong>Eye color:</strong> {eye_color}</div>
           <div><strong>Birth year:</strong> {birth_year}</div>
           <div><strong>Mass:</strong> {mass}</div>
-          <div>
-            <Link to={`/planets/${HomeworldId}`}><strong>Homeworld:</strong> {HomeworldId}</Link>
-          </div>
-          <div>
-            <Link to={`/species/${SpecieId}`}><strong>Specie:</strong> {SpecieId}</Link>
-          </div>
+          {HomeworldId
+            ? <div>
+              <Link to={`/planets/${HomeworldId}`}><strong>Homeworld:</strong> {HomeworldId}</Link>
+            </div>
+            : null
+          }
+          {SpecieId
+            ? <div>
+              <Link to={`/species/${SpecieId}`}><strong>Specie:</strong> {SpecieId}</Link>
+            </div>
+            : null
+          }
         </div>}
       </div>
     </div>
