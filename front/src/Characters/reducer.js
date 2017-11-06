@@ -8,7 +8,11 @@ import {
 
 const defaultState = {
   loaded: false,
-  character: {},
+  loading: false,
+  character: {
+    loaded: false,
+    loading: false
+  },
   characters: {}
 }
 
@@ -18,7 +22,8 @@ export const Characters =
       case REQUEST_CHARACTERS: {
         return {
           ...clone(state),
-          loaded: false
+          loaded: false,
+          loading: true
         }
       }
 
@@ -26,6 +31,7 @@ export const Characters =
         return {
           ...clone(state),
           loaded: true,
+          loading: false,
           characters: action.characters
             .reduce((characters, character) => ({
               ...characters,

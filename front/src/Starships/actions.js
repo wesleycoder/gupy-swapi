@@ -4,10 +4,6 @@ const PREFIX = 'STARSHIPS__'
 export const REQUEST_STARSHIPS = `${PREFIX}REQUEST_STARSHIPS`
 export const RECEIVE_STARSHIPS = `${PREFIX}RECEIVE_STARSHIPS`
 
-const startRequest = () => ({
-  type: REQUEST_STARSHIPS
-})
-
 const query = `
   query starships {
     starships (order: "name") {
@@ -16,9 +12,18 @@ const query = `
   }
 `
 
+const requestStarships = () => ({
+  type: REQUEST_STARSHIPS
+})
+
+export const receiveStarships = (starships) => ({
+  type: RECEIVE_STARSHIPS,
+  starships
+})
+
 export const fetchStarships = () =>
   (dispatch) => {
-    dispatch(startRequest())
+    dispatch(requestStarships())
     return api({
       query,
       operationName: 'starships'
@@ -30,10 +35,6 @@ export const fetchStarships = () =>
     )
   }
 
-export const receiveStarships = (starships) => ({
-  type: RECEIVE_STARSHIPS,
-  starships
-})
 
 export default {
   REQUEST_STARSHIPS,

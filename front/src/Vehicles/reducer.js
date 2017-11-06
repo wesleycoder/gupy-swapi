@@ -3,7 +3,12 @@ import { REQUEST_VEHICLES, RECEIVE_VEHICLES } from './actions'
 
 const defaultState = {
   loaded: false,
-  vehicles: []
+  loading: false,
+  vehicle: {
+    loaded: false,
+    loading: false,
+  },
+  vehicles: {}
 }
 
 export const Vehicles =
@@ -12,7 +17,8 @@ export const Vehicles =
       case REQUEST_VEHICLES: {
         return {
           ...clone(state),
-          loaded: false
+          loaded: false,
+          loading: false
         }
       }
 
@@ -20,7 +26,12 @@ export const Vehicles =
         return {
           ...clone(state),
           loaded: true,
+          loading: false,
           vehicles: action.vehicles
+            .reduce((vehicles, vehicle) => ({
+              ...vehicles,
+              [vehicle.id]: vehicle
+            }), {})
         }
       }
 

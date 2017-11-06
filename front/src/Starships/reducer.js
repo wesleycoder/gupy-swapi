@@ -4,6 +4,7 @@ import { REQUEST_STARSHIPS, RECEIVE_STARSHIPS } from './actions'
 const defaultState = {
   loaded: false,
   starships: []
+  loading: false,
 }
 
 export const Starships =
@@ -12,7 +13,8 @@ export const Starships =
       case REQUEST_STARSHIPS: {
         return {
           ...clone(state),
-          loaded: false
+          loaded: false,
+          loading: true
         }
       }
 
@@ -20,6 +22,7 @@ export const Starships =
         return {
           ...clone(state),
           loaded: true,
+          loading: false,
           starships: action.starships
         }
       }

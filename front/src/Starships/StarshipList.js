@@ -1,16 +1,23 @@
 import { h } from 'preact'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchStarships } from './actions'
 import LoadingList from '../List/LoadingList'
 
-export const StarshipList = ({ loaded, starships, loadStarships }) => (
+export const StarshipList = ({ loaded, loading, starships, loadStarships }) => (
   <LoadingList
     loaded={loaded}
+    loading={loading}
     name='Starships'
-    items={starships}
+    items={Object.values(starships)}
+    sortBy='name'
     loadItems={loadStarships}
-    callback={(starship) => (
-      <div><strong>{starship.name}</strong></div>
+    callback={({ id, name }) => (
+      <div>
+        <Link to={`/starships/${id}`}>
+          {name}
+        </Link>
+      </div>
     )}
   />
 )
@@ -22,10 +29,12 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = ({
   Starships: {
     loaded,
+    loading,
     starships
   }
 }) => ({
   loaded,
+  loading,
   starships
 })
 

@@ -4,7 +4,7 @@ const PREFIX = 'VEHICLES__'
 export const REQUEST_VEHICLES = `${PREFIX}REQUEST_VEHICLES`
 export const RECEIVE_VEHICLES = `${PREFIX}RECEIVE_VEHICLES`
 
-const startRequest = () => ({
+const requestVehicles = () => ({
   type: REQUEST_VEHICLES
 })
 
@@ -18,7 +18,7 @@ const query = `
 
 export const fetchVehicles = () =>
   (dispatch) => {
-    dispatch(startRequest())
+    dispatch(requestVehicles())
     return api({
       query,
       operationName: 'vehicles'

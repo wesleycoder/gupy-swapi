@@ -31,7 +31,7 @@ const query = `
   }
 `
 
-const startRequest = () => ({
+const requestPlanets = () => ({
   type: REQUEST_PLANETS
 })
 
@@ -40,7 +40,7 @@ export const receivePlanets = (planets) => ({
   planets
 })
 
-const startRequestDetails = (planetId) => ({
+const requestDetails = (planetId) => ({
   type: REQUEST_DETAILS,
   planetId
 })
@@ -52,7 +52,7 @@ export const receiveDetails = (planet) => ({
 
 export const fetchPlanets = () =>
   (dispatch) => {
-    dispatch(startRequest())
+    dispatch(requestPlanets())
     return api({
       query,
       operationName: 'planets'
@@ -66,7 +66,7 @@ export const fetchPlanets = () =>
 
 export const fetchDetails = (planetId) =>
   (dispatch) => {
-    dispatch(startRequestDetails(planetId))
+    dispatch(requestDetails(planetId))
     return api({
       query,
       operationName: 'planetDetails',

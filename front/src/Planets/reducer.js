@@ -8,7 +8,11 @@ import {
 
 const defaultState = {
   loaded: false,
-  planet: {},
+  loading: false,
+  planet: {
+    loaded: false,
+    loading: false,
+  },
   planets: {}
 }
 
@@ -18,15 +22,16 @@ export const Planets =
       case REQUEST_PLANETS: {
         return {
           ...clone(state),
-          loaded: false
+          loaded: false,
+          loading: true
         }
       }
 
       case RECEIVE_PLANETS: {
-        // console.log(action.planets)
         return {
           ...clone(state),
           loaded: true,
+          loading: false,
           planets: action.planets
             .reduce((planets, planet) => ({
               ...planets,

@@ -36,7 +36,7 @@ const query = `
   }
 `
 
-const startRequestFilms = () => ({
+const requestFilms = () => ({
   type: REQUEST_FILMS
 })
 
@@ -45,7 +45,7 @@ export const receiveFilms = (films) => ({
   films
 })
 
-const startRequestDetails = (filmId) => ({
+const requestDetails = (filmId) => ({
   type: REQUEST_DETAILS,
   filmId
 })
@@ -67,7 +67,7 @@ export const toggleCharacters = (filmId) => ({
 
 export const fetchFilms = () =>
   (dispatch) => {
-    dispatch(startRequestFilms())
+    dispatch(requestFilms())
     return api({
       query,
       operationName: 'films'
@@ -81,7 +81,7 @@ export const fetchFilms = () =>
 
 export const fetchDetails = (filmId) =>
   (dispatch) => {
-    dispatch(startRequestDetails(filmId))
+    dispatch(requestDetails(filmId))
     return api({
       query,
       operationName: 'filmDetails',

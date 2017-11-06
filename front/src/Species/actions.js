@@ -32,7 +32,7 @@ const query = `
   }
 `
 
-const startRequest = () => ({
+const requestSpecies = () => ({
   type: REQUEST_SPECIES
 })
 
@@ -41,7 +41,7 @@ export const receiveSpecies = (species) => ({
   species
 })
 
-const startRequestDetails = (specieId) => ({
+const requestDetails = (specieId) => ({
   type: REQUEST_DETAILS,
   specieId
 })
@@ -53,7 +53,7 @@ export const receiveDetails = (specie) => ({
 
 export const fetchSpecies = () =>
   (dispatch) => {
-    dispatch(startRequest())
+    dispatch(requestSpecies())
     return api({
       query,
       operationName: 'species'
@@ -67,7 +67,7 @@ export const fetchSpecies = () =>
 
 export const fetchDetails = (specieId) =>
   (dispatch) => {
-    dispatch(startRequestDetails())
+    dispatch(requestDetails())
     return api({
       query,
       operationName: 'specieDetails',

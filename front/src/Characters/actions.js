@@ -32,7 +32,7 @@ const query = `
   }
 `
 
-const startRequest = () => ({
+const requestCharacters = () => ({
   type: REQUEST_CHARACTERS
 })
 
@@ -41,7 +41,7 @@ export const receiveCharacters = (characters) => ({
   characters
 })
 
-const startRequestDetails = (characterId) => ({
+const requestDetails = (characterId) => ({
   type: REQUEST_DETAILS,
   characterId
 })
@@ -53,7 +53,7 @@ export const receiveDetails = (character) => ({
 
 export const fetchCharacters = () =>
   (dispatch) => {
-    dispatch(startRequest())
+    dispatch(requestCharacters())
     return api({
       query,
       operationName: 'characters'
@@ -67,7 +67,7 @@ export const fetchCharacters = () =>
 
 export const fetchDetails = (characterId) =>
   (dispatch) => {
-    dispatch(startRequestDetails(characterId))
+    dispatch(requestDetails(characterId))
     return api({
       query,
       operationName: 'characterDetails',
