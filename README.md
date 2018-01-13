@@ -1,4 +1,6 @@
 # gupy-swapi
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwescoder%2Fgupy-swapi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwescoder%2Fgupy-swapi?ref=badge_shield)
+
 
 > Node/React application showcasing SWAPI (swapi.co) data
 
@@ -37,3 +39,7 @@
 - [ ] Create views for delete (each model)
 - [ ] Implement search (preferably with fuzzy search)
 - [ ] Implement filters (for measurable/enumerable properties)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwescoder%2Fgupy-swapi.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwescoder%2Fgupy-swapi?ref=badge_large)
